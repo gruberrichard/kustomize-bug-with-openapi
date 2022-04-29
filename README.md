@@ -13,7 +13,7 @@
 |GENERATED| The generated yaml for all other directoried to make it easier to compare them |
 
 ## Issue description:
-kustomize build deployment-patch - works as expected it does patch the Deployment resource
+kustomize build deployment-patch - works as expected it does patch the Deployment resource<br />
 kustomize build rollout-patch - works as expected it does patch the Rollout resource
 
 ```
