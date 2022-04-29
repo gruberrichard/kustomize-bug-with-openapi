@@ -13,6 +13,12 @@
 |GENERATED| The generated yaml for all other directoried to make it easier to compare them |
 
 ## Issue description:
+
+```
+$ kustomize version
+{Version:kustomize/v4.4.1 GitCommit:b2d65ddc98e09187a8e38adc27c30bab078c1dbf BuildDate:2021-11-11T23:36:27Z GoOs:darwin GoArch:amd64}
+```
+
 `kustomize build deployment-patch` - works as expected it does patch the Deployment resource<br />
 `kustomize build rollout-patch` - works as expected it does patch the Rollout resource
 
