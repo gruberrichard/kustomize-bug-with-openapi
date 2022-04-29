@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.15.2
+        env:
+          - name: TEST_VAR1
+            value: "Patched"
+          - name: TEST_VAR2
+            value: "Additional"

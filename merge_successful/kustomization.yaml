@@ -1,0 +1,3 @@
+resources:
+- ../deployment_patch
+- ../rollout_patch

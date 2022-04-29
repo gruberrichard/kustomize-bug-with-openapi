@@ -1,0 +1,5 @@
+resources:
+- ../deployment_base
+
+patches:
+- deploy_patch.yaml

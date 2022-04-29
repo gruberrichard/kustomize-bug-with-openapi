@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rollout-canary
+spec:
+  replicas: 50
+  template:
+    spec:
+      containers:
+      - name: rollouts-demo
+        image: argoproj/rollouts-demo:green
+        env:
+          - name: TEST_VAR1
+            value: "Patched"
+          - name: TEST_VAR2
+            value: "Additional"

@@ -1,0 +1,5 @@
+resources:
+- ../rollout_base
+
+patches:
+- rollout_patch.yaml

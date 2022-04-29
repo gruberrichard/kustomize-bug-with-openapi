@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - env:
+        - name: TEST_VAR1
+          value: Patched
+        - name: TEST_VAR2
+          value: Additional
+        image: nginx:1.15.2
+        imagePullPolicy: Always
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 50m
+            memory: 32Mi
+          requests:
+            cpu: 50m
+            memory: 32Mi
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rollout-canary
+spec:
+  replicas: 50
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: rollout-canary
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 40
+      - pause:
+          duration: 40s
+      - setWeight: 60
+      - pause:
+          duration: 20s
+      - setWeight: 80
+      - pause:
+          duration: 20s
+  template:
+    metadata:
+      labels:
+        app: rollout-canary
+    spec:
+      containers:
+      - env:
+        - name: TEST_VAR1
+          value: Patched
+        - name: TEST_VAR2
+          value: Additional
+        image: argoproj/rollouts-demo:green
+        imagePullPolicy: Always
+        name: rollouts-demo
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 500m
+            memory: 320Mi
+          requests:
+            cpu: 500m
+            memory: 320Mi

@@ -1,0 +1,8 @@
+resources:
+- ../deployment_base
+
+openapi:
+  path: rollout_cr_schema.json
+
+patches:
+- deploy_patch.yaml
