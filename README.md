@@ -1,0 +1,1 @@
+# kustomize-bug-with-openapi
